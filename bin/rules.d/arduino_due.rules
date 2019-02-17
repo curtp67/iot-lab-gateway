@@ -1,0 +1,6 @@
+# Zigduino Nodes
+KERNEL=="ttyACM*", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="003d", SUBSYSTEMS=="usb", SYMLINK+="iotlab/ttyON_ARDUINO_DUE"
+SUBSYSTEM=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="003d", MODE="0664", GROUP="dialout"
+
+# Flashing interface
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="dialout"
