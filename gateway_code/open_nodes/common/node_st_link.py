@@ -29,5 +29,9 @@ class NodeStLinkBase(NodeOpenOCDBase):
     """ Open node STM32 St-Link based board implementation """
 
     TTY = '/dev/iotlab/ttyON_STLINK'
+    import gateway_code.config
+    serial = gateway_code.config.read_config('serial')
+    if serial:
+        TTY += serial.upper()
     BAUDRATE = 115200
     DIRTY_SERIAL = True

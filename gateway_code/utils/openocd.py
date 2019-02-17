@@ -46,6 +46,7 @@ class OpenOCD(object):
 
     OPENOCD = ('{openocd_path} --debug=0'
                ' {config}'
+               ' -c "hla_serial "{serial_port}""'
                ' -c "init"'
                ' -c "targets"'
                ' {cmd}')
@@ -65,6 +66,11 @@ class OpenOCD(object):
 
     def __init__(self, openocd_args,
                  verb=False, timeout=TIMEOUT):
+                 
+        from gateway_code import board_config
+        board_cfg = board_config.BoardConfig()
+        if board_cfg.serial_number:
+            self.serial_port = board_cfg.serial_number.upper()
         self.openocd_path = openocd_args.path
         self.config = self._config(openocd_args.config_file, openocd_args.opts)
         self.timeout = timeout
@@ -148,7 +154,7 @@ class OpenOCD(object):
         """ Get subprocess arguments for command_str """
         # Generate full command arguments
         cmd = self.OPENOCD.format(openocd_path=self.openocd_path,
-                                  config=self.config, cmd=command_str)
+                                  config=self.config, cmd=command_str, serial_port = self.serial_port)
         args = shlex.split(cmd)
         return {'args': args, 'stdout': self.out, 'stderr': self.out}
 

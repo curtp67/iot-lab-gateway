@@ -47,6 +47,8 @@ class BoardConfig(object):  # pylint:disable=too-few-public-methods
         self.profile_from_dict = functools.partial(profile.Profile.from_dict,
                                                    self.board_class)
         self.default_profile = self.profile_from_dict(config.DEFAULT_PROFILE)
+		       
+        self.serial = config.read_config('serial')
 
     @property
     def board_type(self):
@@ -57,3 +59,8 @@ class BoardConfig(object):  # pylint:disable=too-few-public-methods
     def cn_type(self):
         """Control node type."""
         return self.cn_class.TYPE
+		
+    @property
+    def serial_number(self):
+        """Control node type."""
+        return self.serial
