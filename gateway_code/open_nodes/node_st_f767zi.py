@@ -29,7 +29,7 @@ class NodeStIotnode(NodeStLinkBase):
     """ Open node STM32 IOTNODE implementation """
 
     TYPE = 'st_f767zi'
-    OPENOCD_CFG_FILE = static_path('st-767zi.cfg')
+    OPENOCD_CFG_FILE = static_path('st-f767zi.cfg')
     OPENOCD_PATH = '/opt/openocd/bin/openocd'
-    FW_IDLE = static_path('st-767zi_idle.elf')
-    FW_AUTOTEST = static_path('st-767zi_autotest.elf')
+    FW_IDLE = static_path('st-f767zi_idle.elf')
+    FW_AUTOTEST = static_path('st-f767zi_autotest.elf')
