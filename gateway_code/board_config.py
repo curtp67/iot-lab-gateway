@@ -49,6 +49,7 @@ class BoardConfig(object):  # pylint:disable=too-few-public-methods
         self.default_profile = self.profile_from_dict(config.DEFAULT_PROFILE)
 		       
         self.serial = config.read_config('serial')
+        self.port = config.read_config('port')
 
     @property
     def board_type(self):
@@ -64,3 +65,8 @@ class BoardConfig(object):  # pylint:disable=too-few-public-methods
     def serial_number(self):
         """Control node type."""
         return self.serial
+        
+    @property
+    def serial_port(self):
+        """Control node type."""
+        return self.port

@@ -27,7 +27,10 @@ from gateway_code.open_nodes.common.node_edbg import NodeEdbgBase
 
 class NodeArduinoZero(NodeEdbgBase):
     """ Open node Arduino Zero implementation """
-
+    import gateway_code.config
+    port = gateway_code.config.read_config('port')
+    if port:
+        port=port;
     TYPE = 'arduino_zero'
     OPENOCD_CFG_FILE = static_path('iot-lab-arduino-zero.cfg')
     FW_IDLE = static_path('arduino-zero_idle.elf')

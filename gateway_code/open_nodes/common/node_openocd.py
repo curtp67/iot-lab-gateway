@@ -50,8 +50,10 @@ class NodeOpenOCDBase(OpenNodeBase):
 
     ALIM = '5V'
 
-    def __init__(self):
-        self.serial_redirection = SerialRedirection(self.TTY, self.BAUDRATE)
+    def __init__(self):        
+        if not self.port:
+            self.port = 20000;
+        self.serial_redirection = SerialRedirection(self.TTY, self.BAUDRATE, self.port)
         self.openocd = self.OPENOCD_CLASS.from_node(self)
 
     def clear_serial(self):

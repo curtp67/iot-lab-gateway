@@ -50,7 +50,9 @@ class NodeEdbgBase(OpenNodeBase):
     ALIM = '5V'
 
     def __init__(self):
-        self.serial_redirection = SerialRedirection(self.TTY, self.BAUDRATE)
+        if not self.port:
+            self.port = 20000;
+        self.serial_redirection = SerialRedirection(self.TTY, self.BAUDRATE, self.port)
         self.openocd = OpenOCD.from_node(self)
         self.edbg = Edbg()
         self._current_fw = None

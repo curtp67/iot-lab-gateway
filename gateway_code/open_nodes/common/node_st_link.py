@@ -31,7 +31,10 @@ class NodeStLinkBase(NodeOpenOCDBase):
     TTY = '/dev/iotlab/ttyON_STLINK'
     import gateway_code.config
     serial = gateway_code.config.read_config('serial')
+    port = gateway_code.config.read_config('port')
     if serial:
         TTY += serial.upper()
+    if port:
+        port=port;
     BAUDRATE = 115200
     DIRTY_SERIAL = True
